@@ -11,10 +11,10 @@ jobs:
     
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       
     - name: Setup Python
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v5
       with:
         python-version: '3.9'
     
@@ -28,7 +28,7 @@ jobs:
         mlflow run . --experiment-name "CI_Workflow_Experiment"
     
     - name: Upload MLflow artifacts
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: mlflow-artifacts
         path: Workflow-CI/MLProject/mlruns/
