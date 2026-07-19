@@ -20,15 +20,15 @@ jobs:
     
     - name: Install dependencies
       run: |
+        python -m pip install --upgrade pip
         pip install mlflow scikit-learn pandas numpy matplotlib seaborn
+    
+    - name: List files for debugging
+      run: |
+        ls -la
+        ls -la Workflow-CI/MLProject/ || echo "Folder not found"
     
     - name: Run MLflow Project
       run: |
         cd Workflow-CI/MLProject
-        mlflow run . --experiment-name "CI_Workflow_Experiment"
-    
-    - name: Upload MLflow artifacts
-      uses: actions/upload-artifact@v4
-      with:
-        name: mlflow-artifacts
-        path: Workflow-CI/MLProject/mlruns/
+        python modelling.py --n_estimators 50 --max_depth 3
